@@ -1,5 +1,5 @@
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
-    event.preventDefault(); // Evitar el envío del formulario normal
+document.getElementById("loginForm").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Evitar el envío del formulario
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -11,20 +11,16 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ username, password }),
-            mode: "cors"  // Habilita modo CORS explícitamente
+            mode: "cors"  // Habilitar CORS explícitamente
         });
 
         if (response.ok) {
-            // Login exitoso
-            const data = await response.json();  // La respuesta es ahora un objeto JSON
+            const data = await response.json();  // Respuesta JSON
 
-            // Guarda token en el almacenamiento local
-            localStorage.setItem("authToken", data.token);  // Guarda el token que se recibe
+            localStorage.setItem("authToken", data.token);  // Guardar token
 
-            // Redirigir a la página del menú del juego
-            window.location.href = "menu.html";
+            window.location.href = "menu.html";  // Redirigir a la página del juego
         } else {
-            // Login fallido
             document.getElementById("error-message").textContent = "Invalid username or password.";
         }
     } catch (error) {

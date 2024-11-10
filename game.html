@@ -1,24 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+    <!-- Meta etiquetas para configuración de la página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Bingo</title>
+
+    <!-- Enlace a Bootstrap para el diseño de la página -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlace a archivo CSS personalizado para el estilo del juego -->
     <link rel="stylesheet" href="css/game.css">
 </head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center">Juego de Bingo</h1>
-        <div id="bingoCard" class="bingo-card mx-auto my-4">
-            <!-- Aquí se generarán las celdas del bingo con JavaScript -->
-        </div>
-        <button class="btn btn-primary d-block mx-auto" onclick="markRandomCell()">Marcar número</button>
-    </div>
 
-    <script src="js/game.js"></script>
-    <script src="js/websocket.js"></script>
+<body>
+    <!-- Encabezado de la página -->
+    <header>
+        <h1>Bingo</h1> <!-- Título del juego -->
+    </header>
+
+    <!-- Contenedor principal del juego -->
+    <main class="container my-5">
+        <section id="game-board" class="game-container">
+            <!-- Sección para la tabla de números posibles (lado izquierdo) -->
+            <div id="number-table" class="card">
+                <div class="card-body">
+                    <!-- Título de la tabla de números posibles -->
+                    <h2 class="card-title text-center">Números Posibles</h2>
+                    <!-- Tabla para mostrar los números BINGO (a la izquierda) -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <!-- Encabezado de las columnas B, I, N, G, O -->
+                                <th>B</th>
+                                <th>I</th>
+                                <th>N</th>
+                                <th>G</th>
+                                <th>O</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Las filas con los números posibles se agregarán dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección a la derecha que contiene el cartón del jugador y el número sorteado -->
+            <div class="right-section">
+                <!-- Cartón del jugador -->
+                <div id="bingo-card" class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Tu Cartón</h2>
+                        <!-- Tabla donde se muestra el cartón del jugador -->
+                        <table id="player-card" class="table table-bordered">
+                            <thead>
+                                <!-- Encabezado de las columnas del cartón del jugador -->
+                                <tr>
+                                    <th>B</th>
+                                    <th>I</th>
+                                    <th>N</th>
+                                    <th>G</th>
+                                    <th>O</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Las filas con el cartón de bingo del jugador se agregarán dinámicamente con JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Botón para confirmar el bingo -->
+                <button id="bingo-button">Bingo</button>
+
+                <!-- Sección para mostrar el número sorteado -->
+                <div id="drawn-number" class="card">
+                    <div class="card-body">
+                        <!-- Título de la sección de número sorteado -->
+                        <h2 class="card-title">Número Sorteado</h2>
+                        <!-- Espacio donde se muestra el número sorteado -->
+                        <p id="number-display" class="number-display">--</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enlaces a los archivos JavaScript que manejan el juego -->
+    <script src="js/websocket.js"></script> <!-- Manejo de WebSocket para la comunicación en tiempo real -->
+    <script src="js/bingoCard.js"></script> <!-- Generación del cartón de bingo -->
+    <script src="js/markNumbers.js"></script> <!-- Marcado de los números sorteados en el cartón -->
+    <script src="js/main.js"></script> <!-- Funciones principales de la lógica del juego -->
+    <script src="js/table.js"></script> <!-- Manejo de la tabla de números posibles -->
+    <script src="js/checkBingo.js"></script> <!-- Verificación de si el jugador tiene bingo -->
+
+    <!-- Librerías externas para WebSocket -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </body>
+
 </html>

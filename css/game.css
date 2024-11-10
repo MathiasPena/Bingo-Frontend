@@ -1,22 +1,229 @@
-.bingo-card {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.bingo-cell {
-    width: 60px;
-    height: 60px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2a4d61;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+main {
+    padding: 20px;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    background-color: #f0f8ff;
-    border: 2px solid #000;
-    font-size: 20px;
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #2a4d61;
+    color: white;
+}
+
+td {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+td:hover {
+    background-color: #ddd;
+}
+
+#drawn-number p {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    color: #2a4d61;
+    margin-top: 20px;
+}
+
+/* Estilo para la "N" del cartón del jugador */
+#player-card .free-space {
+    background-color: #e0e0e0;
+    font-style: italic;
+    color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    #drawn-number p {
+        font-size: 1.5rem;
+    }
+}
+
+.table thead {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Para la tabla de números posibles */
+#number-table td {
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.number-display {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.game-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Contenedor de la sección derecha */
+.right-section {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-left: 10px;
+}
+
+/* Asegurando que la tabla de números ocupe todo el espacio de la izquierda */
+#number-table {
+    flex: 1 1 50%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+/* Hacer que el contenedor sea responsive */
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #number-table,
+    .right-section {
+        width: 100%;
+    }
+}
+
+/* Para el cartón de bingo */
+.bingo-cell {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 15px;
+}
+
+.free-space {
+    background-color: #f8f9fa;
+    font-style: italic;
+    color: #007bff;
+}
+
+.bingo-header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+#bingo-card table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#bingo-card {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #bingo-card table {
+        width: 100%;
+        table-layout: auto;
+    }
+}
+
+.marked-number {
+    background-color: #ffcccc;
+    /* El color de fondo para los números marcados */
     font-weight: bold;
 }
 
 .bingo-cell.marked {
-    background-color: #4caf50;
-    color: white;
+    background-color: #ccffdd;
+    /* Cambiar el color de fondo cuando esté marcado */
 }
